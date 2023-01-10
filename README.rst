@@ -22,5 +22,6 @@ Build and Running output
 ************************
 
 AD5693 initialization completed successfully
+
 DAC set to 3v as Vref = 5v
 
