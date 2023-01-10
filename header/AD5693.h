@@ -43,15 +43,17 @@ struct AD5693_config_def
 
 // Initialize the AD5693
 int ad5693_init(struct AD5693_config_def* config);
-
-// Set the conversion rate for the ADC and DAC
-int ad5693_set_conversion_rate(uint8_t rate);
+// set the AD5693 operating mode
 int ad5693_set_operating_mode(AD5693_operating_mode mode);
+// set gain, note: Vdac = Vref * gain * (D/65536)
 int ad5693_set_gain(AD5693_GAIN gain);
+// reset the AD5693 chip
 int ad5693_reset();
+// load the input register with desired DAC value, will only update after
+// calling ad5693_update_dac_reg function
 int ad5693_write_input_register(uint16_t value);
+// transfer input register value to DAC value
 int ad5693_update_dac_reg();
-
 // Write a value to the DAC
 int ad5693_dac_write(uint16_t value);
 

@@ -1,6 +1,7 @@
 
 #ifndef I2C_WRAPPER_H
 #define I2C_WRAPPER_H
+#include <stdbool.h>
 #include <stdint.h>
 
 /*
@@ -26,18 +27,18 @@ struct i2c_msg
 struct i2c_config
 {
     /*  just sample of a possible implementation    */
-    uint8_t instance;         // index of I2C instance
-    uint32_t frequency;       // I2C bus frequency (in Hz)
-    uint8_t own_address;      // Own address of the I2C device
-    uint8_t ack_enable;       // Enable/disable acknowledge bit
-    uint8_t ack_addr;         // Acknowledge address in 7-bit or 10-bit mode
-    uint8_t ack_data;         // Acknowledge data in 7-bit or 10-bit mode
-    uint8_t dma_enable;       // Enable/disable DMA for I2C transfer
-    uint8_t interrupt_enable; // Enable/disable interrupts for I2C transfer
+    uint8_t instance;      // index of I2C instance
+    uint32_t frequency;    // I2C bus frequency (in Hz)
+    uint8_t own_address;   // Own address of the I2C device
+    bool ack_enable;       // Enable/disable acknowledge bit
+    bool ack_addr;         // Acknowledge address in 7-bit or 10-bit mode
+    bool ack_data;         // Acknowledge data in 7-bit or 10-bit mode
+    bool dma_enable;       // Enable/disable DMA for I2C transfer
+    bool interrupt_enable; // Enable/disable interrupts for I2C transfer
 };
-
+// initialize the I2C peripheral
 void i2c_init(struct i2c_config* config);
-
+// transfer bytes through i2c
 int i2c_transfer(struct i2c_msg* msgs, uint8_t num_msgs, uint16_t addr);
 
 #endif
